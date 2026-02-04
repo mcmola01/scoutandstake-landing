@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scout&Stake - Where Fantasy Meets Talent Discovery | Launching August 2026</title>
+    <meta name="description" content="The dual-purpose football platform: Play fantasy football across top 5 leagues and discover the next generation of talent. $10 season pass. Launching August 2026.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #059669 0%, #2563EB 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #059669 0%, #2563EB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center shadow-lg">
+                        <span class="text-white text-lg font-bold">S&S</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Scout&Stake</h1>
+                        <p class="text-xs text-gray-500">Launching August 2026</p>
+                    </div>
+                </div>
+                <a href="#waitlist" class="hidden md:block px-6 py-2 gradient-bg text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                    Join Waitlist
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Value Hook -->
+    <section class="hero-pattern py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 rounded-full mb-6">
+                    <span class="w-2 h-2 bg-emerald-600 rounded-full animate-pulse"></span>
+                    <span class="text-emerald-800 font-semibold text-sm">Launching August 2026</span>
+                </div>
+                
+                <!-- VALUE HOOK - ONE SENTENCE -->
+                <div class="mb-6">
+                    <p class="text-xl md:text-2xl text-gray-700 font-medium max-w-4xl mx-auto">
+                        The only platform where you compete in fantasy football <span class="text-emerald-600 font-bold">AND</span> discover the next generation of talent before the world knows their names.
+                    </p>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-tight">
+                    Fantasy Meets<br/>
+                    <span class="gradient-text">Talent Discovery</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Play fantasy across Europe's top 5 leagues. Scout unknown academy players. 
+                    <br class="hidden md:block"/>
+                    Win prizes. Connect with clubs. Build the future of football.
+                </p>
+                
+                <div class="mb-10">
+                    <div class="inline-block">
+                        <div class="bg-white px-8 py-4 rounded-xl shadow-xl border-2 border-emerald-200">
+                            <div class="text-sm text-gray-600 mb-1">Season Pass</div>
+                            <div class="flex items-baseline justify-center gap-2">
+                                <span class="text-5xl font-black gradient-text">$10</span>
+                                <span class="text-gray-500">/season</span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">₦16,000 | GH₵150 | 40 weeks</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#waitlist" class="w-full sm:w-auto px-8 py-4 gradient-bg text-white rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-xl">
+                        🎯 Join the Waitlist
+                    </a>
+                    <a href="#how-it-works" class="w-full sm:w-auto px-8 py-4 bg-white border-2 border-gray-300 text-gray-900 rounded-xl font-bold text-lg hover:border-emerald-600 transition-colors">
+                        Learn More →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Dual Business Model -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+                    Two Platforms. One Vision.
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Scout&Stake is built for both fantasy players and talent scouts
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- FANTASY SIDE -->
+                <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-3xl p-8 md:p-12 border-2 border-emerald-200 card-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">⚽</span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-black text-gray-900">Fantasy Side</h3>
+                            <p class="text-emerald-700 font-semibold">For Competitive Players</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Compete in a skill-based fantasy league that rewards strategy, research, and talent discovery.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-emerald-600 rounded-full mt-2"></div>
+                            <div>
+                                <div class="font-bold text-gray-900">Top 5 Leagues Mix</div>
+                                <div class="text-gray-600">Premier League, La Liga, Serie A, Bundesliga, Ligue 1 - all in one squad</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-emerald-600 rounded-full mt-2"></div>
+                            <div>
+                                <div class="font-bold text-gray-900">Skill-Based Gameplay</div>
+                                <div class="text-gray-600">25-player squads, realistic transfer windows, strategic depth</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-emerald-600 rounded-full mt-2"></div>
+                            <div>
+                                <div class="font-bold text-gray-900">Community Rankings</div>
+                                <div class="text-gray-600">Leaderboards, mini-leagues, head-to-head battles with friends</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t-2 border-emerald-200">
+                        <div class="text-emerald-700 font-semibold text-sm uppercase tracking-wide mb-2">Weekly Prizes</div>
+                        <div class="text-2xl font-black text-gray-900">Sponsor-Funded Rewards</div>
+                    </div>
+                </div>
+                
+                <!-- SCOUT SIDE -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8 md:p-12 border-2 border-blue-200 card-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">🔍</span>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-black text-gray-900">Scout Side</h3>
+                            <p class="text-blue-700 font-semibold">For Talent Discoverers</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Discover unknown players before they break through. Build your reputation as a talent spotter.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                            <div>
+                                <div class="font-bold text-gray-900">Player Discovery</div>
+                                <div class="text-gray-600">Find U23 academy prospects and rising stars from Africa before they go mainstream</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                            <div>
+                                <div class="font-bold text-gray-900">Scouts & Clubs Connect</div>
+                                <div class="text-gray-600">Share discoveries, build networks, connect with professional scouts and clubs</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
+                            <div>
+                                <div class="font-bold text-gray-900">Performance Analysis</div>
+                                <div class="text-gray-600">Track player progression, upload videos, share detailed scouting reports</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t-2 border-blue-200">
+                        <div class="text-blue-700 font-semibold text-sm uppercase tracking-wide mb-2">Build Reputation</div>
+                        <div class="text-2xl font-black text-gray-900">Get Discovered Yourself</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Connection between both sides -->
+            <div class="mt-12 text-center">
+                <div class="inline-block bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-8 py-4 rounded-2xl shadow-xl">
+                    <p class="text-lg font-bold">
+                        💡 The Magic: Your fantasy squad MUST include 5 academy players you discover on the Scout Side!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Social Proof + Mission + Global Impact -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Social Proof -->
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-8">
+                    Join the Movement
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="text-5xl font-black gradient-text mb-2">350+</div>
+                        <div class="text-gray-600 font-semibold">Waitlist Members</div>
+                        <div class="text-sm text-gray-500 mt-2">Before launch</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="text-5xl font-black gradient-text mb-2">5</div>
+                        <div class="text-gray-600 font-semibold">Top Leagues</div>
+                        <div class="text-sm text-gray-500 mt-2">Unified in one platform</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="text-5xl font-black gradient-text mb-2">1000s</div>
+                        <div class="text-gray-600 font-semibold">Academy Players</div>
+                        <div class="text-sm text-gray-500 mt-2">Waiting to be discovered</div>
+                    </div>
+                </div>
+                
+                <!-- Recent Joiners -->
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-sm font-semibold text-gray-600 mb-4">🔥 Recent Joiners</div>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                        <div class="bg-white rounded-lg p-3 text-center">
+                            <div class="text-2xl mb-1">🇳🇬</div>
+                            <div class="text-xs font-semibold text-gray-900">AdemolaAde</div>
+                            <div class="text-xs text-gray-500">Nigeria</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-center">
+                            <div class="text-2xl mb-1">🇧🇷</div>
+                            <div class="text-xs font-semibold text-gray-900">MarcosLima</div>
+                            <div class="text-xs text-gray-500">Brazil</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-center">
+                            <div class="text-2xl mb-1">🇬🇭</div>
+                            <div class="text-xs font-semibold text-gray-900">KwasiM</div>
+                            <div class="text-xs text-gray-500">Ghana</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-center">
+                            <div class="text-2xl mb-1">🇮🇹</div>
+                            <div class="text-xs font-semibold text-gray-900">LucaRossi</div>
+                            <div class="text-xs text-gray-500">Italy</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-center">
+                            <div class="text-2xl mb-1">🇰🇪</div>
+                            <div class="text-xs font-semibold text-gray-900">JohnOchieng</div>
+                            <div class="text-xs text-gray-500">Kenya</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mission Statement -->
+            <div class="bg-white rounded-3xl p-12 md:p-16 shadow-2xl mb-20 border-2 border-gray-200">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="inline-block bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full font-semibold text-sm mb-6">
+                        OUR MISSION
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
+                        Discovering Tomorrow's Stars While Making Fantasy Football Better
+                    </h2>
+                    <p class="text-xl text-gray-600 leading-relaxed mb-8">
+                        We believe the next Messi, Salah, or Osimhen is playing in an academy right now, unknown to the world. 
+                        Scout&Stake creates a bridge between unknown talent and global recognition, while giving fantasy players 
+                        a deeper, more strategic, and more rewarding experience.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6 text-left">
+                        <div class="bg-emerald-50 rounded-xl p-6">
+                            <div class="text-2xl mb-3">🎯</div>
+                            <div class="font-bold text-gray-900 mb-2">For Fantasy Players</div>
+                            <div class="text-gray-600">Move beyond picking obvious stars. Earn rewards for discovering talent before the mainstream does.</div>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <div class="text-2xl mb-3">🌍</div>
+                            <div class="font-bold text-gray-900 mb-2">For Scouts & Players</div>
+                            <div class="text-gray-600">Get your discoveries seen by thousands. Build your reputation. Connect with clubs worldwide.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Global Football Impact -->
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">
+                    Our Global Football Impact
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+                    Scout&Stake isn't just a platform—it's a movement to change how talent is discovered and recognized globally
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-5xl mb-4">🌍</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Spotlight on African Talent</h3>
+                        <p class="text-gray-600">
+                            Showcasing academy players from Nigeria, Ghana, Kenya, Senegal, and beyond to a global audience of football fans and clubs.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-5xl mb-4">🤝</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Connecting Grassroots to Professional</h3>
+                        <p class="text-gray-600">
+                            Building bridges between academy coaches, local scouts, and professional clubs looking for the next generation of talent.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-5xl mb-4">💎</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Rewarding Early Believers</h3>
+                        <p class="text-gray-600">
+                            Users who discover a player before their breakout earn legacy points, badges, and recognition as the player's career grows.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-2xl p-8 max-w-4xl mx-auto">
+                    <p class="text-2xl font-bold mb-2">
+                        "The next Victor Osimhen is out there. Will you be the one to discover him?"
+                    </p>
+                    <p class="text-emerald-100">
+                        — Scout&Stake Community
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Form -->
+    <section id="waitlist" class="py-20 bg-gradient-to-br from-emerald-600 to-blue-600">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+                        Join the Waitlist
+                    </h2>
+                    <p class="text-xl text-gray-600">
+                        Be among the first 1,000 to get exclusive early bird pricing and founding member benefits
+                    </p>
+                </div>
+                
+                <!-- Waitlist Benefits -->
+                <div class="grid md:grid-cols-3 gap-4 mb-8">
+                    <div class="text-center p-4 bg-emerald-50 rounded-xl">
+                        <div class="text-3xl mb-2">💰</div>
+                        <div class="font-semibold text-gray-900">50% Off</div>
+                        <div class="text-sm text-gray-600">Early bird pricing</div>
+                    </div>
+                    <div class="text-center p-4 bg-blue-50 rounded-xl">
+                        <div class="text-3xl mb-2">🎁</div>
+                        <div class="font-semibold text-gray-900">Bonus Budget</div>
+                        <div class="text-sm text-gray-600">Extra $20M to start</div>
+                    </div>
+                    <div class="text-center p-4 bg-purple-50 rounded-xl">
+                        <div class="text-3xl mb-2">👑</div>
+                        <div class="font-semibold text-gray-900">Founder Badge</div>
+                        <div class="text-sm text-gray-600">Lifetime status</div>
+                    </div>
+                </div>
+                
+                <!-- ZOHO FORMS EMBED -->
+                <div id="zf_div_eQTA_YhhAwN5PBKdjvov9ELxCQ1y8jvAtvNYSB2hkb0"></div>
+                <script type="text/javascript">
+                (function() {
+                    try{
+                        var f = document.createElement("iframe");
+                        var ifrmSrc = 'https://forms.zohopublic.ca/ademolaaderibigbescouta1/form/ScoutStakewaitlist/formperma/eQTA_YhhAwN5PBKdjvov9ELxCQ1y8jvAtvNYSB2hkb0?zf_rszfm=1';
+                        
+                        try{
+                            if ( typeof ZFAdvLead != "undefined" && typeof zfutm_zfAdvLead != "undefined" ) {
+                                for( var prmIdx = 0 ; prmIdx < ZFAdvLead.utmPNameArr.length ; prmIdx ++ ) {
+                                    var utmPm = ZFAdvLead.utmPNameArr[ prmIdx ];
+                                    utmPm = ( ZFAdvLead.isSameDomian && ( ZFAdvLead.utmcustPNameArr.indexOf(utmPm) == -1 ) ) ? "zf_" + utmPm : utmPm;
+                                    var utmVal = zfutm_zfAdvLead.zfautm_gC_enc( ZFAdvLead.utmPNameArr[ prmIdx ] );
+                                    if ( typeof utmVal !== "undefined" ) {
+                                      if ( utmVal != "" ) {
+                                        if(ifrmSrc.indexOf('?') > 0){
+                                             ifrmSrc = ifrmSrc+'&'+utmPm+'='+utmVal;
+                                        }else{
+                                            ifrmSrc = ifrmSrc+'?'+utmPm+'='+utmVal;
+                                        }
+                                      }
+                                    }
+                                }
+                            }
+                            if ( typeof ZFLead !== "undefined" && typeof zfutm_zfLead !== "undefined" ) {
+                                for( var prmIdx = 0 ; prmIdx < ZFLead.utmPNameArr.length ; prmIdx ++ ) {
+                                    var utmPm = ZFLead.utmPNameArr[ prmIdx ];
+                                    var utmVal = zfutm_zfLead.zfutm_gC_enc( ZFLead.utmPNameArr[ prmIdx ] );
+                                    if ( typeof utmVal !== "undefined" ) {
+                                      if ( utmVal != "" ){
+                                        if(ifrmSrc.indexOf('?') > 0){
+                                          ifrmSrc = ifrmSrc+'&'+utmPm+'='+utmVal;
+                                        }else{
+                                          ifrmSrc = ifrmSrc+'?'+utmPm+'='+utmVal;
+                                        }
+                                      }
+                                    }
+                                }
+                            }
+                        }catch(e){}
+                        
+                        f.src = ifrmSrc;
+                        f.style.border="none";
+                        f.style.height="700px";
+                        f.style.width="100%";
+                        f.style.transition="all 0.5s ease";
+                        f.style.borderRadius="12px";
+                        f.setAttribute("aria-label", 'Scout&Stake Waitlist');
+                        f.setAttribute("allow","geolocation;");
+                        var d = document.getElementById("zf_div_eQTA_YhhAwN5PBKdjvov9ELxCQ1y8jvAtvNYSB2hkb0");
+                        d.appendChild(f);
+                        window.addEventListener('message', function (){
+                            var evntData = event.data;
+                            if( evntData && evntData.constructor == String ){
+                                var zf_ifrm_data = evntData.split("|");
+                                if ( zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3 ) {
+                                    var zf_perma = zf_ifrm_data[0];
+                                    var zf_ifrm_ht_nw = ( parseInt(zf_ifrm_data[1], 10) + 15 ) + "px";
+                                    var iframe = document.getElementById("zf_div_eQTA_YhhAwN5PBKdjvov9ELxCQ1y8jvAtvNYSB2hkb0").getElementsByTagName("iframe")[0];
+                                    if ( (iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0 ) {
+                                        var prevIframeHeight = iframe.style.height;
+                                        var zf_tout = false;
+                                        if( zf_ifrm_data.length == 3 ) {
+                                            iframe.scrollIntoView();
+                                            zf_tout = true;
+                                        }
+                                        if ( prevIframeHeight != zf_ifrm_ht_nw ) {
+                                            if( zf_tout ) {
+                                                setTimeout(function(){
+                                                    iframe.style.height = zf_ifrm_ht_nw;
+                                                },500);
+                                            } else {
+                                                iframe.style.height = zf_ifrm_ht_nw;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }, false);
+                    }catch(e){}
+                })();
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+                            <span class="text-white text-sm font-bold">S&S</span>
+                        </div>
+                        <span class="text-white font-bold">Scout&Stake</span>
+                    </div>
+                    <p class="text-sm">
+                        Where fantasy meets talent discovery. Building the future of football.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#fantasy" class="hover:text-emerald-400">Fantasy Side</a></li>
+                        <li><a href="#scout" class="hover:text-emerald-400">Scout Side</a></li>
+                        <li><a href="#waitlist" class="hover:text-emerald-400">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#mission" class="hover:text-emerald-400">Mission</a></li>
+                        <li><a href="mailto:support@scoutandstake.com" class="hover:text-emerald-400">Contact</a></li>
+                        <li><a href="mailto:support@scoutandstake.com" class="hover:text-emerald-400">support@scoutandstake.com</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>© 2026 Scout&Stake. All rights reserved.</p>
+                <p class="mt-2">Made with ⚽ for football fans and talent discoverers worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
