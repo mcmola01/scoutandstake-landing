@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scout&Stake - Interactive Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f172a;
+        }
+        
+        .player-slot {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .player-slot:hover {
+            transform: scale(1.05);
+        }
+        
+        .player-card {
+            background: linear-gradient(135deg, #059669 0%, #2563EB 100%);
+        }
+        
+        .academy-player {
+            background: linear-gradient(135deg, #7c3aed 0%, #2563EB 100%);
+        }
+        
+        .empty-slot {
+            background: #374151;
+            border: 2px dashed #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const AVAILABLE_PLAYERS = [
+            { id: 1, name: 'M. Salah', team: 'Liverpool', league: 'Premier League', price: 45, points: 152, position: 'FWD' },
+            { id: 2, name: 'E. Haaland', team: 'Man City', league: 'Premier League', price: 50, points: 198, position: 'FWD' },
+            { id: 3, name: 'K. Mbappé', team: 'Real Madrid', league: 'La Liga', price: 48, points: 165, position: 'FWD' },
+            { id: 4, name: 'R. Lewandowski', team: 'Barcelona', league: 'La Liga', price: 40, points: 142, position: 'FWD' },
+            { id: 5, name: 'V. Osimhen', team: 'Napoli', league: 'Serie A', price: 38, points: 128, position: 'FWD' },
+            { id: 6, name: 'H. Kane', team: 'Bayern', league: 'Bundesliga', price: 42, points: 145, position: 'FWD' },
+            { id: 7, name: 'K. De Bruyne', team: 'Man City', league: 'Premier League', price: 44, points: 138, position: 'MID' },
+            { id: 8, name: 'J. Bellingham', team: 'Real Madrid', league: 'La Liga', price: 35, points: 115, position: 'MID' },
+        ];
+
+        const ACADEMY_PLAYERS = [
+            { id: 101, name: 'Chiamaka Nnadozie', age: 17, country: 'Nigeria', team: 'Abuja FC Academy', price: 0.5, potential: 'Elite', position: 'FWD', description: 'Explosive pace and clinical finishing' },
+            { id: 102, name: 'Kwame Mensah', age: 18, country: 'Ghana', team: 'Hearts of Oak U20', price: 0.75, potential: 'Elite', position: 'MID', description: 'Vision and passing range beyond his years' },
+            { id: 103, name: 'Abdul Rahman', age: 17, country: 'Egypt', team: 'Al Ahly Youth', price: 0.6, potential: 'High', position: 'FWD', description: 'Technical ability and 1-on-1 dribbling' },
+            { id: 104, name: 'Youssef Diop', age: 18, country: 'Senegal', team: 'Diambars FC', price: 0.8, potential: 'Elite', position: 'DEF', description: 'Strong defender, good positioning' },
+        ];
+
+        function App() {
+            const [activeTab, setActiveTab] = useState('squad');
+            const [mySquad, setMySquad] = useState([]);
+            const [academySquad, setAcademySquad] = useState([]);
+            const [budget, setBudget] = useState(250);
+            const [totalPoints, setTotalPoints] = useState(0);
+            const [showPlayerModal, setShowPlayerModal] = useState(false);
+            const [selectedCategory, setSelectedCategory] = useState('star');
+
+            const spent = mySquad.reduce((sum, p) => sum + p.price, 0) + 
+                         academySquad.reduce((sum, p) => sum + p.price, 0);
+            const remaining = budget - spent;
+
+            const addPlayer = (player) => {
+                if (selectedCategory === 'star' && mySquad.length < 20 && remaining >= player.price) {
+                    setMySquad([...mySquad, player]);
+                    setTotalPoints(totalPoints + player.points);
+                    setShowPlayerModal(false);
+                }
+            };
+
+            const addAcademyPlayer = (player) => {
+                if (academySquad.length < 5 && remaining >= player.price) {
+                    setAcademySquad([...academySquad, player]);
+                    setShowPlayerModal(false);
+                }
+            };
+
+            const removePlayer = (playerId, isAcademy) => {
+                if (isAcademy) {
+                    const player = academySquad.find(p => p.id === playerId);
+                    setAcademySquad(academySquad.filter(p => p.id !== playerId));
+                } else {
+                    const player = mySquad.find(p => p.id === playerId);
+                    setMySquad(mySquad.filter(p => p.id !== playerId));
+                    if (player) setTotalPoints(totalPoints - player.points);
+                }
+            };
+
+            return (
+                <div className="min-h-screen bg-gray-900 text-white p-4">
+                    {/* Header */}
+                    <div className="max-w-7xl mx-auto mb-6">
+                        <div className="flex items-center justify-between bg-gray-800 rounded-xl p-4 border border-gray-700">
+                            <div>
+                                <h1 className="text-2xl font-black text-white">Scout&Stake Demo</h1>
+                                <p className="text-sm text-gray-400">Try building your squad!</p>
+                            </div>
+                            <div className="text-right">
+                                <div className="text-sm text-gray-400">Total Points</div>
+                                <div className="text-3xl font-black text-emerald-400">{totalPoints}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Budget Display */}
+                    <div className="max-w-7xl mx-auto mb-6">
+                        <div className="bg-gradient-to-r from-emerald-600 to-blue-600 rounded-xl p-6">
+                            <div className="grid grid-cols-3 gap-4 text-center">
+                                <div>
+                                    <div className="text-sm text-emerald-100">Budget</div>
+                                    <div className="text-2xl font-bold">${budget}M</div>
+                                </div>
+                                <div>
+                                    <div className="text-sm text-emerald-100">Spent</div>
+                                    <div className="text-2xl font-bold">${spent.toFixed(1)}M</div>
+                                </div>
+                                <div>
+                                    <div className="text-sm text-emerald-100">Remaining</div>
+                                    <div className="text-2xl font-bold">${remaining.toFixed(1)}M</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Tabs */}
+                    <div className="max-w-7xl mx-auto mb-6">
+                        <div className="flex gap-2 bg-gray-800 p-2 rounded-xl border border-gray-700">
+                            <button
+                                onClick={() => setActiveTab('squad')}
+                                className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all ${
+                                    activeTab === 'squad'
+                                        ? 'bg-emerald-600 text-white'
+                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                }`}
+                            >
+                                ⚽ My Squad ({mySquad.length}/20)
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('academy')}
+                                className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all ${
+                                    activeTab === 'academy'
+                                        ? 'bg-purple-600 text-white'
+                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                }`}
+                            >
+                                🔍 Academy ({academySquad.length}/5)
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('leaderboard')}
+                                className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all ${
+                                    activeTab === 'leaderboard'
+                                        ? 'bg-blue-600 text-white'
+                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                }`}
+                            >
+                                🏆 Leaderboard
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="max-w-7xl mx-auto">
+                        {activeTab === 'squad' && (
+                            <div>
+                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                    <div className="flex justify-between items-center mb-6">
+                                        <h2 className="text-xl font-bold">Star Players</h2>
+                                        <button
+                                            onClick={() => {
+                                                setSelectedCategory('star');
+                                                setShowPlayerModal(true);
+                                            }}
+                                            className="bg-emerald-600 hover:bg-emerald-700 px-6 py-2 rounded-lg font-bold transition-colors"
+                                        >
+                                            + Add Player
+                                        </button>
+                                    </div>
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        {mySquad.map(player => (
+                                            <div
+                                                key={player.id}
+                                                className="player-card text-white rounded-lg p-4 relative player-slot"
+                                                onClick={() => removePlayer(player.id, false)}
+                                            >
+                                                <button className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 w-6 h-6 rounded-full text-xs font-bold">
+                                                    ×
+                                                </button>
+                                                <div className="font-bold text-sm mb-1">{player.name}</div>
+                                                <div className="text-xs opacity-90">{player.team}</div>
+                                                <div className="text-xs opacity-75 mb-2">{player.league}</div>
+                                                <div className="flex justify-between items-center text-xs">
+                                                    <span>${player.price}M</span>
+                                                    <span className="font-bold">{player.points} pts</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {[...Array(Math.max(0, 20 - mySquad.length))].map((_, i) => (
+                                            <div
+                                                key={`empty-${i}`}
+                                                className="empty-slot rounded-lg p-4 flex items-center justify-center text-gray-500 player-slot"
+                                                onClick={() => {
+                                                    setSelectedCategory('star');
+                                                    setShowPlayerModal(true);
+                                                }}
+                                            >
+                                                <div className="text-center">
+                                                    <div className="text-2xl mb-2">+</div>
+                                                    <div className="text-xs">Empty</div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'academy' && (
+                            <div>
+                                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                    <div className="flex justify-between items-center mb-6">
+                                        <div>
+                                            <h2 className="text-xl font-bold">Academy Players</h2>
+                                            <p className="text-sm text-gray-400">Required: 5 players</p>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                setSelectedCategory('academy');
+                                                setShowPlayerModal(true);
+                                            }}
+                                            className="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg font-bold transition-colors"
+                                        >
+                                            + Scout Player
+                                        </button>
+                                    </div>
+                                    
+                                    {academySquad.length > 0 ? (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                            {academySquad.map(player => (
+                                                <div
+                                                    key={player.id}
+                                                    className="academy-player text-white rounded-lg p-4 relative player-slot"
+                                                    onClick={() => removePlayer(player.id, true)}
+                                                >
+                                                    <button className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 w-6 h-6 rounded-full text-xs font-bold">
+                                                        ×
+                                                    </button>
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="flex-1">
+                                                            <div className="font-bold mb-1">{player.name}</div>
+                                                            <div className="text-xs opacity-90">{player.age} years • {player.country} 🌍</div>
+                                                            <div className="text-xs opacity-75 mb-2">{player.team}</div>
+                                                            <div className="text-xs italic opacity-90">{player.description}</div>
+                                                        </div>
+                                                        <div className="bg-yellow-400 text-gray-900 px-2 py-1 rounded text-xs font-bold">
+                                                            €{player.price}M
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : null}
+                                    
+                                    <div className="bg-purple-900/30 border-2 border-purple-500 rounded-lg p-6 text-center">
+                                        <div className="text-4xl mb-3">🌟</div>
+                                        <h3 className="text-lg font-bold mb-2">Discover Hidden Gems</h3>
+                                        <p className="text-sm text-gray-300 mb-4">
+                                            Find U23 academy players before they break through. Earn massive bonus points when they do!
+                                        </p>
+                                        {academySquad.length < 5 && (
+                                            <div className="bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg inline-block font-bold text-sm">
+                                                ⚠️ {5 - academySquad.length} more required
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'leaderboard' && (
+                            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                <h2 className="text-xl font-bold mb-6">🏆 Global Leaderboard</h2>
+                                <div className="space-y-3">
+                                    {[
+                                        { rank: 1, name: 'TalentScout_NG', points: 1247, icon: '🥇' },
+                                        { rank: 2, name: 'FPLKing2026', points: 1198, icon: '🥈' },
+                                        { rank: 3, name: 'AfroBallers', points: 1156, icon: '🥉' },
+                                        { rank: 4, name: 'ScoutMaster', points: 1089, icon: '4' },
+                                        { rank: 5, name: 'AcademyHunter', points: 1045, icon: '5' },
+                                    ].map(entry => (
+                                        <div
+                                            key={entry.rank}
+                                            className={`flex items-center justify-between p-4 rounded-lg ${
+                                                entry.rank <= 3 ? 'bg-gradient-to-r from-yellow-600/20 to-orange-600/20 border border-yellow-500/30' : 'bg-gray-700'
+                                            }`}
+                                        >
+                                            <div className="flex items-center gap-4">
+                                                <div className="text-2xl font-bold w-10">{entry.icon}</div>
+                                                <div>
+                                                    <div className="font-bold">{entry.name}</div>
+                                                    <div className="text-sm text-gray-400">Rank #{entry.rank}</div>
+                                                </div>
+                                            </div>
+                                            <div className="text-2xl font-bold text-emerald-400">{entry.points}</div>
+                                        </div>
+                                    ))}
+                                    <div className="flex items-center justify-between p-4 rounded-lg bg-blue-900/30 border-2 border-blue-500">
+                                        <div className="flex items-center gap-4">
+                                            <div className="text-2xl font-bold w-10">👤</div>
+                                            <div>
+                                                <div className="font-bold">You (Demo)</div>
+                                                <div className="text-sm text-gray-400">Current Rank</div>
+                                            </div>
+                                        </div>
+                                        <div className="text-2xl font-bold text-blue-400">{totalPoints}</div>
+                                    </div>
+                                </div>
+                                
+                                <div className="mt-6 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-lg p-4 text-center">
+                                    <p className="font-bold text-lg">💰 Weekly Prize Pool: $750</p>
+                                    <p className="text-sm text-emerald-100 mt-1">Top 3 managers split the prize!</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Player Selection Modal */}
+                    {showPlayerModal && (
+                        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+                            <div className="bg-gray-800 rounded-xl max-w-4xl w-full max-h-[80vh] overflow-auto border border-gray-700">
+                                <div className="sticky top-0 bg-gray-800 border-b border-gray-700 p-6 flex justify-between items-center">
+                                    <h3 className="text-2xl font-bold">
+                                        {selectedCategory === 'star' ? '⚽ Select Star Player' : '🔍 Scout Academy Player'}
+                                    </h3>
+                                    <button
+                                        onClick={() => setShowPlayerModal(false)}
+                                        className="bg-gray-700 hover:bg-gray-600 w-10 h-10 rounded-lg font-bold text-xl"
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                                <div className="p-6">
+                                    {selectedCategory === 'star' ? (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {AVAILABLE_PLAYERS.filter(p => !mySquad.find(mp => mp.id === p.id)).map(player => (
+                                                <div
+                                                    key={player.id}
+                                                    onClick={() => addPlayer(player)}
+                                                    className="bg-gray-700 hover:bg-gray-600 rounded-lg p-4 cursor-pointer transition-all border-2 border-transparent hover:border-emerald-500"
+                                                >
+                                                    <div className="flex justify-between items-start mb-3">
+                                                        <div>
+                                                            <div className="font-bold text-lg">{player.name}</div>
+                                                            <div className="text-sm text-gray-400">{player.team} • {player.league}</div>
+                                                        </div>
+                                                        <div className="bg-emerald-600 px-3 py-1 rounded font-bold">${player.price}M</div>
+                                                    </div>
+                                                    <div className="flex justify-between items-center">
+                                                        <div className="text-sm">
+                                                            <span className="text-gray-400">Position:</span> {player.position}
+                                                        </div>
+                                                        <div className="text-emerald-400 font-bold">{player.points} pts</div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="grid grid-cols-1 gap-4">
+                                            {ACADEMY_PLAYERS.filter(p => !academySquad.find(ap => ap.id === p.id)).map(player => (
+                                                <div
+                                                    key={player.id}
+                                                    onClick={() => addAcademyPlayer(player)}
+                                                    className="bg-gray-700 hover:bg-gray-600 rounded-lg p-6 cursor-pointer transition-all border-2 border-transparent hover:border-purple-500"
+                                                >
+                                                    <div className="flex justify-between items-start mb-3">
+                                                        <div>
+                                                            <div className="font-bold text-xl">{player.name}</div>
+                                                            <div className="text-sm text-gray-400">{player.age} years • {player.country}</div>
+                                                            <div className="text-sm text-gray-400">{player.team}</div>
+                                                        </div>
+                                                        <div className="bg-yellow-400 text-gray-900 px-3 py-2 rounded font-bold">€{player.price}M</div>
+                                                    </div>
+                                                    <div className="flex flex-wrap gap-2 mb-3">
+                                                        <span className="bg-purple-600 px-3 py-1 rounded-full text-xs font-bold">{player.position}</span>
+                                                        <span className="bg-purple-600 px-3 py-1 rounded-full text-xs font-bold">{player.potential} Potential</span>
+                                                    </div>
+                                                    <p className="text-sm text-gray-300 italic">"{player.description}"</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Bottom CTA */}
+                    <div className="max-w-7xl mx-auto mt-8 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-xl p-8 text-center">
+                        <h3 className="text-2xl font-bold mb-2">Like What You See?</h3>
+                        <p className="text-emerald-100 mb-4">Join the waitlist and get 50% off at launch!</p>
+                        <a
+                            href="#waitlist"
+                            target="_parent"
+                            className="inline-block bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors"
+                        >
+                            Join Waitlist Now →
+                        </a>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
